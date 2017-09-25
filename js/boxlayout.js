@@ -2,16 +2,6 @@ var Boxlayout = (function() {
 
 	var $el = $( '#bl-main' ),
 		$sections = $el.children( 'section' ),
-		// works section
-		$sectionWork = $( '#bl-work-section' ),
-		// work items
-		$workItems = $( '#bl-work-items > li' ),
-		// work panels
-		$workPanelsContainer = $( '#bl-panel-work-items' ),
-		$workPanels = $workPanelsContainer.children( 'div' ),
-		totalWorkPanels = $workPanels.length,
-		// navigating the work panels
-		$nextWorkItem = $workPanelsContainer.find( 'nav > span.bl-next-work' ),
 		// if currently navigating the work items
 		isAnimating = false,
 		// close work panel trigger
