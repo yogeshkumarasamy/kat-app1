@@ -2,10 +2,8 @@ var Boxlayout = (function() {
 
 	var $el = $( '#bl-main' ),
 		$sections = $el.children( 'section' ),
-		// if currently navigating the work items
-		isAnimating = false,
-		// close work panel trigger
-		$closeWorkItem = $workPanelsContainer.find( 'nav > span.bl-icon-close' ),
+		// works section
+		$sectionWork = $( '#bl-work-section' ),
 		transEndEventNames = {
 			'WebkitTransition' : 'webkitTransitionEnd',
 			'MozTransition' : 'transitionend',
