@@ -27,33 +27,21 @@ var Boxlayout = (function() {
 	}
 
 	function doTransition(index,$section) {
-		// if(index == 1){
-			// var adjusent =  [0,1,3], subAdjusentDownX =  2, subAdjusentDownY =  6, fadex0y0 = [], fadex1y0 = [], fadex0y1 = [], fadex1y1 = [4,5,7,8];
-		// }
-		if(index == 2){
-			var adjusent =  [0,1,2,4], subAdjusentDownX, subAdjusentDownY =  7, fadex0y0 =  [], fadex1y0 = [] , fadex0y1 = [3,6], fadex1y1 = [5,8];
+
+		switch(index){
+			case 2:
+				var adjusent =  [0,1,2,4], subAdjusentDownX, subAdjusentDownY =  7, fadex0y0 =  [], fadex1y0 = [] , fadex0y1 = [3,6], fadex1y1 = [5,8];
+			break;
+			case 4:
+				var adjusent =  [0,3,4,6], subAdjusentDownX = 5, subAdjusentDownY, fadex0y0 =  [], fadex1y0 = [1,2] , fadex0y1 = [], fadex1y1 = [7,8];
+			break;
+			case 6:
+				var adjusent =  [2,4,5,8], subAdjusentUpX = 3, subAdjusentDownY, fadex0y0 =  [0,1], fadex1y0 = [] , fadex0y1 = [6,7], fadex1y1 = [];
+			break;
+			case 8:
+				var adjusent =  [4,6,7,8], subAdjusentDownX, subAdjusentUpY = 1, fadex0y0 =  [0,3], fadex1y0 = [2,5] , fadex0y1 = [], fadex1y1 = [];
+			break;
 		}
-		// if(index == 3){
-			// var adjusent =  [1,2,5], subAdjusentUpX = 0, subAdjusentDownY = 8, fadex0y0 =  [], fadex1y0 = [] , fadex0y1 = [3,4,6,7], fadex1y1 = [];
-		// }
-		if(index == 4){
-			var adjusent =  [0,3,4,6], subAdjusentDownX = 5, subAdjusentDownY, fadex0y0 =  [], fadex1y0 = [1,2] , fadex0y1 = [], fadex1y1 = [7,8];
-		}
-		// if(index == 5){
-			// var adjusent =  [1,3,4,5,7], subAdjusentUpX , subAdjusentDownY, fadex0y0 =  [0], fadex1y0 = [2] , fadex0y1 = [6], fadex1y1 = [8];
-		// }
-		if(index == 6){
-			var adjusent =  [2,4,5,8], subAdjusentUpX = 3, subAdjusentDownY, fadex0y0 =  [0,1], fadex1y0 = [] , fadex0y1 = [6,7], fadex1y1 = [];
-		}
-		// if(index == 7){
-			// var adjusent =  [3,6,7], subAdjusentDownX = 8, subAdjusentUpY = 0, fadex0y0 =  [], fadex1y0 = [1,2,4,5] , fadex0y1 = [], fadex1y1 = [];
-		// }
-		if(index == 8){
-			var adjusent =  [4,6,7,8], subAdjusentDownX, subAdjusentUpY = 1, fadex0y0 =  [0,3], fadex1y0 = [2,5] , fadex0y1 = [], fadex1y1 = [];
-		}
-		// if(index == 9){
-			// var adjusent =  [5,7,8], subAdjusentUpX = 6, subAdjusentUpY = 2, fadex0y0 =  [0,1,3,4], fadex1y0 = [] , fadex0y1 = [], fadex1y1 = [];
-		// }
 
 		for (var child = 0; child < $el[0].children.length; child++) {
 			if (adjusent.indexOf(child) >= 0)
@@ -96,11 +84,27 @@ var Boxlayout = (function() {
 
 			// expand the clicked section and scale down the others
 			$section.on( 'click', function() {
-				doTransition(index+1,$section)
+				doTransition(index+1,$section);
+				switch(index){
+					case 1:
+						window.location.hash = "menu";
+					break;
+					case 3:
+						window.location.hash = "about";
+					break;
+					case 5:
+						window.location.hash = "csr";
+					break;
+					case 7:
+						window.location.hash = "contact";
+					break;
+				}
+
 				window.location.hash = index;
 
 			} ).find( 'span.bl-icon-close' ).on( 'click', function() {
 				
+				window.location.hash = "";
 				unDoTransition(index+1,$section)
 				// close the expanded section and scale up the others
 				$section.data( 'open', false ).removeClass( 'bl-expand' ).on( transEndEventName, function( event ) {
