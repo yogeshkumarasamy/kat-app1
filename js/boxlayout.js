@@ -27,18 +27,18 @@ var Boxlayout = (function() {
 	}
 
 	function doTransition(index,$section) {
-
+console.log(index)
 		switch(index){
-			case 2:
+			case "menu":
 				var adjusent =  [0,1,2,4], subAdjusentDownX, subAdjusentDownY =  7, fadex0y0 =  [], fadex1y0 = [] , fadex0y1 = [3,6], fadex1y1 = [5,8];
 			break;
-			case 4:
+			case "about":
 				var adjusent =  [0,3,4,6], subAdjusentDownX = 5, subAdjusentDownY, fadex0y0 =  [], fadex1y0 = [1,2] , fadex0y1 = [], fadex1y1 = [7,8];
 			break;
-			case 6:
+			case "csr":
 				var adjusent =  [2,4,5,8], subAdjusentUpX = 3, subAdjusentDownY, fadex0y0 =  [0,1], fadex1y0 = [] , fadex0y1 = [6,7], fadex1y1 = [];
 			break;
-			case 8:
+			case "contact":
 				var adjusent =  [4,6,7,8], subAdjusentDownX, subAdjusentUpY = 1, fadex0y0 =  [0,3], fadex1y0 = [2,5] , fadex0y1 = [], fadex1y1 = [];
 			break;
 		}
@@ -76,31 +76,49 @@ var Boxlayout = (function() {
 		$sections.each( function(index) {
 			
 			var $section = $( this );
-			if(parseInt(window.location.href.split("#")[1]) == index){
-				doTransition(index+1,$section)
-
+			if(window.location.href.split("#").length > 1 && window.location.href.split("#")[1].length > 1){
+				switch(window.location.hash){
+					case "#menu":
+						if(index == 1)
+							doTransition("menu",$section);
+					break;
+					case "#about":
+						if(index == 3)
+							doTransition("about",$section);
+					break;
+					case "#csr":
+						if(index == 5)
+							doTransition("csr",$section);
+					break;
+					case "#contact":
+						if(index == 7)
+							doTransition("contact",$section);
+					break;
+				}
 
 			}
 
 			// expand the clicked section and scale down the others
 			$section.on( 'click', function() {
-				doTransition(index+1,$section);
 				switch(index){
 					case 1:
 						window.location.hash = "menu";
+						doTransition("menu",$section);
 					break;
 					case 3:
 						window.location.hash = "about";
+						doTransition("about",$section);
 					break;
 					case 5:
 						window.location.hash = "csr";
+						doTransition("csr",$section);
 					break;
 					case 7:
 						window.location.hash = "contact";
+						doTransition("contact",$section);
 					break;
 				}
 
-				window.location.hash = index;
 
 			} ).find( 'span.bl-icon-close' ).on( 'click', function() {
 				
