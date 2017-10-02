@@ -66,7 +66,14 @@ console.log(index)
 
 		if( !$section.data( 'open' ) ) {
 			$section.data( 'open', true ).addClass( 'bl-expand bl-expand-top' );
-			$el.addClass( 'bl-expand-item' );	
+			$el.addClass( 'bl-expand-item' );
+			
+				$('.bl-expand-top .bl-content').slimscroll({
+					height: 'calc( 100% - 60px )',
+					color: '#f3bb4e',
+				    size: '10px',
+				    alwaysVisible: true
+				})	
 		}
 		
 	}
@@ -120,7 +127,7 @@ console.log(index)
 				}
 
 
-			} ).find( 'span.bl-icon-close' ).on( 'click', function() {
+			} ).find( 'span.kat-close' ).on( 'click', function() {
 				
 				window.location.hash = "";
 				unDoTransition(index+1,$section)
